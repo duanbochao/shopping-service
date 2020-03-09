@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.NewsMapper">
+
+
+
+    <select id="getNewsListById" resultType="com.bean.News">
+
+        select  n.id,n.title,n.createDate,n.count,n.newsIcon,n.summary
+               <if test="id!=null and id!='' ">
+                   ,n.content
+               </if>
+               from news n
+
+                <if test="id!=null and id!='' ">
+                   where id=#{id} and enabled=true
+                </if>
+
+
+    </select>
+</mapper>
+    
+    
+    
+    
