@@ -17,3 +17,10 @@
         return newsService.getNewsListById(id);
     }
 ```
+
+>加载评论&&发表评论
+``` bash
+1、通过分页进行评论加载，步长固定为5，并根据最新时间进行排序
+2、添加评论，按照正常的add操作即可
+3、创建RespBean格式统一返回类，state=0表示失败，state=1表示成功
+```

@@ -20,6 +20,11 @@
 
 
     </select>
+
+
+    <update id="addCount">
+        update news set count =count+1 where id=#{id}
+    </update>
 </mapper>
     
     

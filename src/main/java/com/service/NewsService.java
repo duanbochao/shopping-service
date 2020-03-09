@@ -18,7 +18,14 @@ public class NewsService {
     @Autowired
     NewsMapper newsMapper;
 
+
     public List<News> getNewsListById(Integer id){
+
+        if (id!=null && !id.equals("")){
+            newsMapper.addCount(id); //统计浏览次数
+        }
         return newsMapper.getNewsListById(id);
     }
+
+
 }

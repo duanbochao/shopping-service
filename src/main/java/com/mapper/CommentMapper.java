@@ -1,0 +1,18 @@
+package com.mapper;
+
+import com.bean.Comment;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author duanbochao
+ * @version 1.0
+ * @date 2020/3/9 9:30
+ */
+public interface CommentMapper {
+
+   List<Comment> getCommentByPage(@Param("page") Integer start,@Param("size") Integer page);
+   Integer addComment(@Param("cmt") Comment cmt);
+
+}
