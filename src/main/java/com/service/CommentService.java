@@ -18,12 +18,18 @@ public class CommentService {
     @Autowired
     CommentMapper commentMapper;
 
-    public List<Comment> getCommentByPage(Integer page,Integer size){
+    public List<Comment> getCommentByPage(Integer page,Integer size,Integer nid){
         Integer start=(page-1)*size;
-        return commentMapper.getCommentByPage(start, size);
+        return commentMapper.getCommentByPage(start, size,nid);
     }
 
-    public  Integer addComment(Comment cmt){
-        return commentMapper.addComment(cmt);
+    public  Integer addComment(Comment cmt,Integer nid){
+
+        //1、先添加评论
+        Integer a = commentMapper.addComment(cmt);
+        //2、添加评论和信息的对应关系
+        Integer b = commentMapper.addNewsComment(nid, cmt.getId());
+        if (a+b==2) return 1;
+        return 0;
     }
 }

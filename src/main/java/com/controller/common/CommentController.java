@@ -28,15 +28,16 @@ public class CommentController {
      */
 
     @RequestMapping("/getCommentByPage")
-    public RespBean getCommentByPage(Integer page){
-        List<Comment> commentList = commentService.getCommentByPage(page, 5);
+    public RespBean getCommentByPage(Integer page,Integer nid){
+        List<Comment> commentList = commentService.getCommentByPage(page, 5,nid);
 
         if (commentList !=null  && commentList.size()>0){
-             return RespBean.ok(commentList);
-         }
+            return RespBean.ok(commentList);
+        }
 
         return RespBean.error("已经到底啦!");
     }
+
 
     /**
      * 添加评论内容
@@ -45,9 +46,9 @@ public class CommentController {
      */
 
     @RequestMapping("/addComment")
-    public RespBean addComment(Comment cmt){
+    public RespBean addComment(Comment cmt,Integer nid){
 
-      if (commentService.addComment(cmt)==1){
+      if (commentService.addComment(cmt,nid)==1){
           return RespBean.ok("评论成功!");
       }
       return RespBean.error("评论失败!");

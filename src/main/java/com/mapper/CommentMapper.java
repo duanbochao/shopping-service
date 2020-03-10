@@ -12,7 +12,10 @@ import java.util.List;
  */
 public interface CommentMapper {
 
-   List<Comment> getCommentByPage(@Param("page") Integer start,@Param("size") Integer page);
-   Integer addComment(@Param("cmt") Comment cmt);
+   List<Comment> getCommentByPage(@Param("page") Integer start,@Param("size") Integer page,@Param("nid") Integer nid);
+
+   Integer addComment(Comment cmt);
+
+   Integer addNewsComment(@Param("nid") Integer nid,@Param("cid")Integer cid);
 
 }

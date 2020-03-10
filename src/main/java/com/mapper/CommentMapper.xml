@@ -5,11 +5,20 @@
 <mapper namespace="com.mapper.CommentMapper">
 
     <select id="getCommentByPage" resultType="com.bean.Comment">
-        select * from comment where enabled=true  ORDER BY commentDate DESC limit #{page},#{size}
+
+        select * from comment  where  id in(select nc.cid  from news_comment nc where nc.nid=#{nid})
+        ORDER BY commentDate  desc  limit #{page},#{size}
     </select>
 
-    <insert id="addComment">
-        insert into comment(username,commentContent) values (#{cmt.username},#{cmt.commentContent})
+
+    <insert id="addComment" parameterType="com.bean.Comment" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into comment(username,commentContent) values (#{username},#{commentContent})
+    </insert>
+
+
+    <insert id="addNewsComment">
+        insert into news_comment(nid,cid) values (#{nid},#{cid});
     </insert>
 
 </mapper>
