@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ShareMapper">
+
+
+    <select id="getSharePagesByType" resultType="com.bean.Share">
+        select * from share
+        <where>
+            <if test="type!=0">
+                and  type=#{type}
+            </if>
+
+          <if test="start!=null and size!=null">
+              and enabled=true limit #{start},#{size}
+          </if>
+        </where>
+
+    </select>
+
+</mapper>
+    
+    
+    
+    
