@@ -1,6 +1,8 @@
 package com.controller.Share;
 
 import com.bean.Share;
+import com.bean.ShareDetail;
+import com.mapper.ShareDetailMapper;
 import com.service.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ public class ShareController {
     @Autowired
     ShareService shareService;
 
+
+
     /**
      * 获取图片信息
      * @param page
@@ -32,4 +36,18 @@ public class ShareController {
         return shareService.getSharePagesByType(page, 5, type);
     }
 
+
+    /**
+     * 获取缩略图
+     * @param sid
+     * @return
+     */
+    @RequestMapping("/getImage")
+    List<ShareDetail> getSharSurlBySid(Integer sid){
+        return shareService.getSharSurlBySid(sid);
+    }
+
 }
+
+
+

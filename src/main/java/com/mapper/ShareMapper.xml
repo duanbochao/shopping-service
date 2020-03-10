@@ -19,6 +19,15 @@
 
     </select>
 
+
+    <select id="getCountById" resultType="com.bean.Share">
+        select  * from  share  where id=#{id} and enabled=true;
+    </select>
+
+
+    <update id="addCount">
+        update  share set count =count+1 where id=#{id};
+    </update>
 </mapper>
     
     

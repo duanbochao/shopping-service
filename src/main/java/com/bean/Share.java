@@ -1,9 +1,12 @@
 package com.bean;
 
+import java.sql.Timestamp;
+
 /**
  * @author duanbochao
  * @version 1.0
  * @date 2020/3/10 10:14
+ * 图片分享首页
  */
 public class Share {
 
@@ -13,6 +16,25 @@ public class Share {
     private Integer type;
     private boolean enabled;
     private String url;
+    private Integer count;
+
+    private Timestamp createDate;
+
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public String getUrl() {
         return url;

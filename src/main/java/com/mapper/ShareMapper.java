@@ -13,4 +13,7 @@ import java.util.List;
 public interface ShareMapper {
 
     List<Share> getSharePagesByType(@Param("start") Integer start,@Param("size") Integer size,@Param("type") String type);
+
+    void addCount(@Param("id") Integer id);
+
 }
