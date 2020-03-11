@@ -6,19 +6,35 @@
 
     <select id="getCommentByPage" resultType="com.bean.Comment">
 
-        select * from comment  where  id in(select nc.cid  from news_comment nc where nc.nid=#{nid})
+        select * from comment  where  id in
+        <if test="commetType==0 || commetType=='0'">
+        (select nc.cid  from news_comment nc where nc.nid=#{nid})  and commetType=#{commetType}
+       </if>
+
+        <if test="commetType==1 || commetType=='1'">
+            (select nc.cid  from share_comment nc where nc.sid=#{nid})  and commetType=#{commetType}
+        </if>
         ORDER BY commentDate  desc  limit #{page},#{size}
     </select>
 
 
     <insert id="addComment" parameterType="com.bean.Comment" keyProperty="id"
             useGeneratedKeys="true">
-        insert into comment(username,commentContent) values (#{username},#{commentContent})
+        insert into comment(username,commentContent,commetType) values (#{username},#{commentContent},#{commetType})
     </insert>
 
 
     <insert id="addNewsComment">
-        insert into news_comment(nid,cid) values (#{nid},#{cid});
+        insert into
+
+          <if test="type=='0' || type==0">
+              news_comment(nid,cid)  values (#{nid},#{cid});
+          </if>
+
+          <if test="type=='1' || type==1 ">
+              share_comment(sid,cid)
+              values (#{nid},#{cid});
+          </if>
     </insert>
 
 </mapper>

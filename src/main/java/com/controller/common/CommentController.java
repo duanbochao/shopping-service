@@ -28,8 +28,8 @@ public class CommentController {
      */
 
     @RequestMapping("/getCommentByPage")
-    public RespBean getCommentByPage(Integer page,Integer nid){
-        List<Comment> commentList = commentService.getCommentByPage(page, 5,nid);
+    public RespBean getCommentByPage(Integer page,Integer nid,String commetType){
+        List<Comment> commentList = commentService.getCommentByPage(page, 5,nid,commetType);
 
         if (commentList !=null  && commentList.size()>0){
             return RespBean.ok(commentList);
@@ -46,9 +46,9 @@ public class CommentController {
      */
 
     @RequestMapping("/addComment")
-    public RespBean addComment(Comment cmt,Integer nid){
+    public RespBean addComment(Comment cmt,Integer nid,String commetType){
 
-      if (commentService.addComment(cmt,nid)==1){
+      if (commentService.addComment(cmt,nid,commetType)==1){
           return RespBean.ok("评论成功!");
       }
       return RespBean.error("评论失败!");

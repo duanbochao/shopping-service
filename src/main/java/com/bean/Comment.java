@@ -14,7 +14,15 @@ public class Comment {
     private String commentContent;
     private Timestamp commentDate;
     private boolean enabled;
+    private String commetType;
 
+    public String getCommetType() {
+        return commetType;
+    }
+
+    public void setCommetType(String commetType) {
+        this.commetType = commetType;
+    }
 
     public Integer getId() {
         return id;
