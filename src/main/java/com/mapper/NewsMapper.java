@@ -15,4 +15,6 @@ public interface NewsMapper {
     List<News> getNewsListById(@Param("id") Integer id);
 
     Integer addCount(@Param("id")Integer id);
+
+
 }

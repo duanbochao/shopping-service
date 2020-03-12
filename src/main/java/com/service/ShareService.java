@@ -1,8 +1,8 @@
 package com.service;
 
 import com.bean.Share;
-import com.bean.ShareDetail;
-import com.mapper.ShareDetailMapper;
+import com.bean.CommonDetail;
+import com.mapper.CommonDetailMapper;
 import com.mapper.ShareMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class ShareService {
     ShareMapper shareMapper;
 
     @Autowired
-    ShareDetailMapper shareDetailMapper;
+    CommonDetailMapper commonDetailMapper;
 
   public  List<Share> getSharePagesByType(Integer page,Integer size,String type){
         Integer start=(page-1)*size;
@@ -29,11 +29,13 @@ public class ShareService {
     }
 
 
-  public  List<ShareDetail> getSharSurlBySid(Integer sid){
+  public  List<CommonDetail> getSharSurlBySid(Integer sid){
          //统计次数
          shareMapper.addCount(sid);
-        return shareDetailMapper.getSharSurlBySid(sid);
+        return commonDetailMapper.getSharSurlBySid(sid);
     }
+
+
 
 
 }

@@ -1,8 +1,7 @@
 package com.controller.Share;
 
 import com.bean.Share;
-import com.bean.ShareDetail;
-import com.mapper.ShareDetailMapper;
+import com.bean.CommonDetail;
 import com.service.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +42,7 @@ public class ShareController {
      * @return
      */
     @RequestMapping("/getImage")
-    List<ShareDetail> getSharSurlBySid(Integer sid){
+    List<CommonDetail> getSharSurlBySid(Integer sid){
         return shareService.getSharSurlBySid(sid);
     }
 

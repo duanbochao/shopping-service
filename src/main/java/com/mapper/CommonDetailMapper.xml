@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.CommonDetailMapper">
+
+    <select id="getSharSurlBySid" resultType="com.bean.CommonDetail">
+        select * from details where id in(select  sd.did  from share_detail  sd where sd.sid=#{sid}) and type ='1'
+    </select>
+
+
+
+    <select id="getGoodsListByGid" resultType="com.bean.CommonDetail">
+        select * from details where id in(select  gd.did from goods_details gd  where gd.gid=#{gid})
+    </select>
+
+</mapper>
+    
+    
+    
+    

@@ -5,8 +5,11 @@
 <mapper namespace="com.mapper.GoodsMapper">
 
     <select id="getGoodsByPage" resultType="com.bean.Goods">
-        select * from goods where enabled=true limit #{start},#{size}
+        select * from goods limit #{start},#{size}
     </select>
+
+
+
 
 </mapper>
     

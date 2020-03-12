@@ -13,4 +13,5 @@ import java.util.List;
 public interface GoodsMapper {
 
    List<Goods> getGoodsByPage(@Param("start") Integer start,@Param("size") Integer size);
+
 }
