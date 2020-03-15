@@ -30,7 +30,7 @@ public class ShareController {
      * @param type
      * @return
      */
-    @RequestMapping("/getSharePagesByType")
+    @RequestMapping("/web/getSharePagesByType")
     List<Share> getSharePagesByType(Integer page, String type){
         return shareService.getSharePagesByType(page, 5, type);
     }
@@ -41,7 +41,7 @@ public class ShareController {
      * @param sid
      * @return
      */
-    @RequestMapping("/getImage")
+    @RequestMapping("/web/getImage")
     List<CommonDetail> getSharSurlBySid(Integer sid){
         return shareService.getSharSurlBySid(sid);
     }

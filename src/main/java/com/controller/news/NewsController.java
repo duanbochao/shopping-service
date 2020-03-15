@@ -26,8 +26,13 @@ public class NewsController {
      * 获取新闻列表
      * @return
      */
-    @RequestMapping(value = "/getNewsListById",method = RequestMethod.GET)
+    @RequestMapping(value = "/web/getNewsListById",method = RequestMethod.GET)
     public List<News> getNewsListById(@RequestParam(defaultValue = "",value = "id", required = false)Integer id){
         return newsService.getNewsListById(id);
+    }
+
+    @RequestMapping("/getAdmin")
+    public String getTest(){
+        return "超级管理员才能看到的信息";
     }
 }

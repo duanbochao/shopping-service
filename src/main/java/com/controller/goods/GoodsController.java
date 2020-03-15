@@ -20,6 +20,10 @@ import java.util.List;
 @RequestMapping("/home/goods")
 public class GoodsController {
 
+    public GoodsController() {
+        System.out.println("==============================");
+    }
+
     @Autowired
     GoodsService goodsService;
 
@@ -28,7 +32,7 @@ public class GoodsController {
      * @param page
      * @return
      */
-    @RequestMapping("/getGoodsByPage")
+    @RequestMapping("/web/getGoodsByPage")
    public List<Goods> getGoodsByPage(Integer page){
         return goodsService.getGoodsByPage(page, 5);
     }
@@ -38,9 +42,15 @@ public class GoodsController {
      * @param gid
      * @return
      */
-    @RequestMapping(value = "/getGoodsListByGid/{gid}",method = RequestMethod.GET)
+    @RequestMapping(value = "/web/getGoodsListByGid/{gid}",method = RequestMethod.GET)
     public  List<CommonDetail> getGoodsListByGid(@PathVariable Integer gid){
         return goodsService.getGoodsListByGid(gid);
+    }
+
+
+    @RequestMapping("/goodsBy")
+    public String goodsBy(){
+        return "goodsBy";
     }
 
 }

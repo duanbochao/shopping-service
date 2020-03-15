@@ -1,0 +1,24 @@
+package com.service;
+
+import com.bean.Menu;
+import com.mapper.MenuMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author duanbochao
+ * @version 1.0
+ * @date 2020/3/15 9:31
+ */
+@Service
+public class MenuService {
+
+    @Autowired
+    MenuMapper menuMapper;
+
+    public List<Menu> getAllMenus(){
+        return menuMapper.getAllMenus();
+    }
+}

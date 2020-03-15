@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/home/lunbo")
 public class HomeController {
 
     @Autowired
@@ -26,10 +26,8 @@ public class HomeController {
      * 获取轮播图
      * @return
      */
-    @RequestMapping(value = "/getlunbo",method = RequestMethod.GET)
+    @RequestMapping(value = "/web/getlunbo",method = RequestMethod.GET)
     public List<Rotation> getAllRotation(){
         return imageService.getAllRotation();
     }
-
-
 }

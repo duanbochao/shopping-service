@@ -27,7 +27,7 @@ public class CommentController {
      * @return
      */
 
-    @RequestMapping("/getCommentByPage")
+    @RequestMapping("/web/getCommentByPage")
     public RespBean getCommentByPage(Integer page,Integer nid,String commetType){
         List<Comment> commentList = commentService.getCommentByPage(page, 5,nid,commetType);
 
@@ -45,7 +45,7 @@ public class CommentController {
      * @return
      */
 
-    @RequestMapping("/addComment")
+    @RequestMapping("/web/addComment")
     public RespBean addComment(Comment cmt,Integer nid,String commetType){
 
       if (commentService.addComment(cmt,nid,commetType)==1){

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.bean.Menu">
+
+        <id column="id" property="id"></id>
+        <result property="name" column="name"></result>
+        <result property="url" column="url"></result>
+        <result property="path" column="path"></result>
+        <result property="component" column="component"></result>
+        <result property="iconCls" column="iconCls"></result>
+        <result property="parentId" column="parentId"></result>
+
+        <!--配置一对一-->
+        <association property="meta" javaType="com.bean.MenuMeta">
+            <result column="requireAuth" property="requireAuth"></result>
+            <result column="keepAlive" property="keepAlive"></result>
+        </association>
+
+        <!--配置一对多-->
+        <collection property="roles" ofType="com.bean.Role">
+            <id column="rid" property="id"></id>
+            <result column="rname" property="name"></result>
+            <result column="nameZh" property="nameZh"></result>
+        </collection>
+
+
+
+    </resultMap>
+
+    <select id="getAllMenus" resultMap="BaseResultMap">
+        select m.id,m.url,m.path,m.parentId,r.id as rid,r.name as rname,r.nameZh from menu m
+                                                                                          LEFT JOIN  menu_role mr  on mr.mid=m.id
+                                                                                          LEFT JOIN role r on mr.rid=r.id
+        where m.parentId!='1' ORDER BY m.id DESC
+    </select>
+
+</mapper>
+    
+    
+    
+    
