@@ -9,10 +9,22 @@ public class RespBean {
     private Integer state;
     private Object message;
 
+
+
+    public static RespBean success(Object message) {
+       return new RespBean(200,message);
+    }
+
+    public static RespBean err(Object message) {
+       return new RespBean(500,message);
+    }
+
+
     public RespBean(Integer state, Object message) {
         this.state = state;
         this.message = message;
     }
+
     public RespBean(Object message) {
         this.message = message;
     }
