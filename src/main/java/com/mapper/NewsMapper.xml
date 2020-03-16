@@ -6,25 +6,39 @@
 
 
 
+    <!--前端查询接口-->
     <select id="getNewsListById" resultType="com.bean.News">
-
         select  n.id,n.title,n.createDate,n.count,n.newsIcon,n.summary
                <if test="id!=null and id!='' ">
                    ,n.content
                </if>
                from news n
-
                 <if test="id!=null and id!='' ">
                    where id=#{id} and enabled=true
                 </if>
-
-
     </select>
-
-
     <update id="addCount">
         update news set count =count+1 where id=#{id}
     </update>
+
+
+    <!--后台查询接口-->
+    <select id="getNewsListByPage" resultType="com.bean.News">
+        select * from news
+                <if test="keywords!='' and keywords!=null">
+                    where title  like concat("%",#{keywords},"%")
+                </if>
+               limit #{start},#{size}
+    </select>
+
+    <select id="getTotal" resultType="Integer">
+        select count(*) from news
+        <if test="keywords!='' and keywords!=null ">
+            where title  like concat("%",#{keywords},"%")
+        </if>
+    </select>
+
+
 </mapper>
     
     

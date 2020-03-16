@@ -59,6 +59,6 @@ public class UrlFilter implements FilterInvocationSecurityMetadataSource {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return SecurityConfig.class.isAssignableFrom(aClass);
+        return FilterInvocation.class.isAssignableFrom(aClass);
     }
 }

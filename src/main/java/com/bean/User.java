@@ -53,7 +53,7 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    @JsonIgnore
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -79,6 +79,7 @@ public class User implements UserDetails {
         return authorities;
     }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
         return password;

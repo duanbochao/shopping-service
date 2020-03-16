@@ -1,8 +1,9 @@
-package com.controller.goods;
+package com.controller.admin.home.goods;
 
 import com.bean.CommonDetail;
 import com.bean.Goods;
 import com.service.GoodsService;
+import com.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,14 @@ import java.util.List;
 @RequestMapping("/home/goods")
 public class GoodsController {
 
-    public GoodsController() {
-        System.out.println("==============================");
-    }
+
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    MenuService menuService;
+
 
     /***
      * 分页查询商品列表中
@@ -45,12 +48,6 @@ public class GoodsController {
     @RequestMapping(value = "/web/getGoodsListByGid/{gid}",method = RequestMethod.GET)
     public  List<CommonDetail> getGoodsListByGid(@PathVariable Integer gid){
         return goodsService.getGoodsListByGid(gid);
-    }
-
-
-    @RequestMapping("/goodsBy")
-    public String goodsBy(){
-        return "goodsBy";
     }
 
 }

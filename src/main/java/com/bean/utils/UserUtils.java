@@ -1,5 +1,6 @@
 package com.bean.utils;
 
+
 import com.bean.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -10,7 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public class UserUtils {
 
-    public static User  getCurrentUser(){
-        return ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public static User getCurrentUser(){
+        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user;
     }
 }

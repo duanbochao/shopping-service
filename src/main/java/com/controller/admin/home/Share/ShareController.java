@@ -1,4 +1,4 @@
-package com.controller.Share;
+package com.controller.admin.home.Share;
 
 import com.bean.Share;
 import com.bean.CommonDetail;

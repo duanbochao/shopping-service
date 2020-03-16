@@ -35,9 +35,31 @@
         select m.id,m.url,m.path,m.parentId,r.id as rid,r.name as rname,r.nameZh from menu m
                                                                                           LEFT JOIN  menu_role mr  on mr.mid=m.id
                                                                                           LEFT JOIN role r on mr.rid=r.id
-        where m.parentId!='1' ORDER BY m.id DESC
+        where m.parentId!=1 ORDER BY m.id DESC
     </select>
 
+
+    <resultMap id="extenResultMap" type="com.bean.Menu" extends="BaseResultMap">
+        <collection property="children" ofType="com.bean.Menu">
+            <result column="name2" property="name"></result>
+            <result column="ur2" property="url"></result>
+            <result column="path2" property="path"></result>
+
+            <!--配置一对一-->
+            <association property="meta" javaType="com.bean.MenuMeta">
+                <result column="requireAuth2" property="requireAuth"></result>
+            </association>
+
+        </collection>
+    </resultMap>
+
+    <select id="getMenusById" resultMap="extenResultMap">
+        select m1.*,m2.name as name2,m2.url as url2,m2.path as path2,m2.requireAuth as requireAuth2
+        from menu m1,menu m2
+        where m1.id=m2.parentId and m2.id in(
+            select mr.mid from menu_role mr where mr.rid in(select ur.rid from user_role ur where ur.uid=#{id})
+        )
+    </select>
 </mapper>
     
     

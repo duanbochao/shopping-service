@@ -1,4 +1,4 @@
-package com.controller.news;
+package com.controller.admin.home.news;
 
 import com.bean.News;
 import com.service.NewsService;
@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author duanbochao
@@ -34,5 +36,21 @@ public class NewsController {
     @RequestMapping("/getAdmin")
     public String getTest(){
         return "超级管理员才能看到的信息";
+    }
+
+    /**
+     * 后台查询接口
+     * @param keywords
+     * @param page
+     * @param size
+     * @return
+     */
+    @RequestMapping("/getNewsListByPage")
+    public Map<String,Object> getNewsListByPage(String keywords, Integer page, Integer size){
+        List<News> newsList = newsService.getNewsListByPage(keywords, page, size);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("newsList",newsList );
+        map.put("total", newsService.getTotal(keywords));
+        return map;
     }
 }

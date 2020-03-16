@@ -16,5 +16,7 @@ public interface NewsMapper {
 
     Integer addCount(@Param("id")Integer id);
 
-
+    //后台查询接口
+   List<News> getNewsListByPage(@Param("keywords") String keywords,@Param("start") Integer start,@Param("size") Integer size);
+   Integer getTotal(@Param("keywords") String keywords);
 }

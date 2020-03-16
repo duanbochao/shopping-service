@@ -1,5 +1,6 @@
-package com.controller;
+package com.controller.admin.home;
 
+import com.bean.Menu;
 import com.bean.Rotation;
 import com.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,7 @@ public class HomeController {
     public List<Rotation> getAllRotation(){
         return imageService.getAllRotation();
     }
+
+
+
 }

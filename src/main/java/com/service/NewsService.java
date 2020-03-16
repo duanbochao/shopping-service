@@ -19,6 +19,7 @@ public class NewsService {
     NewsMapper newsMapper;
 
 
+    //前端查询接口
     public List<News> getNewsListById(Integer id){
 
         if (id!=null && !id.equals("")){
@@ -27,5 +28,14 @@ public class NewsService {
         return newsMapper.getNewsListById(id);
     }
 
+    //后台查询接口
+    public  List<News> getNewsListByPage(String keywords,Integer page,Integer size){
+        Integer start = (page - 1) * size;
+        return newsMapper.getNewsListByPage(keywords, start, size);
+    }
+    //查询总页数
+    public Integer getTotal(String keywords){
+        return newsMapper.getTotal(keywords);
+    }
 
 }

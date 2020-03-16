@@ -1,6 +1,8 @@
 package com.mapper;
 
 import com.bean.Menu;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -12,4 +14,7 @@ import java.util.List;
 public interface MenuMapper {
 
     List<Menu> getAllMenus();
+
+    List<Menu> getMenusById(@Param("id") Integer id);
+
 }
