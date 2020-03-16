@@ -28,9 +28,6 @@ import java.util.UUID;
 @RequestMapping("/config")
 public class MenuController {
 
-    public MenuController() {
-        System.out.println("hello world===============");
-    }
 
     @Autowired
     MenuService menuService;

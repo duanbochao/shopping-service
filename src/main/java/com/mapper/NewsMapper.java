@@ -18,5 +18,8 @@ public interface NewsMapper {
 
     //后台查询接口
    List<News> getNewsListByPage(@Param("keywords") String keywords,@Param("start") Integer start,@Param("size") Integer size);
+
    Integer getTotal(@Param("keywords") String keywords);
+
+   Integer updateNews(News news);
 }

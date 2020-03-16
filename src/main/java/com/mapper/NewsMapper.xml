@@ -39,6 +39,38 @@
     </select>
 
 
+    <!--更新news-->
+    <update id="updateNews" parameterType="com.bean.News">
+        update  news
+        <set>
+            <if test="title!=null and title!= ''">
+                title=#{title},
+            </if>
+
+            <if test="createDate!=null and createDate!= ''">
+                createDate=#{createDate},
+            </if>
+
+            <if test="count!=null and count!= ''">
+                count=#{count},
+            </if>
+
+            <if test="newsIcon!=null and newsIcon!= ''">
+                newsIcon=#{newsIcon},
+            </if>
+
+              <if test="summary!=null and summary!= ''">
+                  summary=#{summary},
+            </if>
+
+              <if test="content!=null and content!= ''">
+                  content=#{content},
+            </if>
+
+        </set>
+        where id=#{id}
+    </update>
+
 </mapper>
     
     

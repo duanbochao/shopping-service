@@ -38,4 +38,10 @@ public class NewsService {
         return newsMapper.getTotal(keywords);
     }
 
+
+    //修改新闻资讯
+    public Integer updateNews(News news){
+        return newsMapper.updateNews(news);
+    }
+
 }

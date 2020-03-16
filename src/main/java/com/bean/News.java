@@ -3,6 +3,8 @@ package com.bean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
 
 /**
  * @author duanbochao
@@ -13,7 +15,7 @@ public class News {
 
     private Integer id;
     private String title;
-    private Timestamp createDate;
+    private String createDate;
     private Integer count;
     private String  content;
     private boolean enabled;
@@ -61,11 +63,11 @@ public class News {
         this.title = title;
     }
 
-    public Timestamp getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

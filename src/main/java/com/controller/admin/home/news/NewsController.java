@@ -53,4 +53,14 @@ public class NewsController {
         map.put("total", newsService.getTotal(keywords));
         return map;
     }
+
+    /**
+     * 修改新闻资讯
+     * @param news
+     * @return
+     */
+    @RequestMapping("/updateNews")
+    public Integer updateNews(News news){
+        return newsService.updateNews(news);
+    }
 }
