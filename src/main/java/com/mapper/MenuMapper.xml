@@ -60,6 +60,9 @@
             select mr.mid from menu_role mr where mr.rid in(select ur.rid from user_role ur where ur.uid=#{id})
         )
     </select>
+
+
+
 </mapper>
     
     

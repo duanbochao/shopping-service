@@ -5,6 +5,7 @@ import com.bean.utils.UserUtils;
 import com.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2020/3/15 9:31
  */
 @Service
+@Transactional
 public class MenuService {
 
     @Autowired

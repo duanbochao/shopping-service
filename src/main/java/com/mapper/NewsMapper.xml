@@ -86,6 +86,12 @@
         where id=#{id}
     </update>
 
+    <!--添加news-->
+    <insert id="insertNewsList">
+        insert into news(title,createDate,content,count,enabled,newsIcon,summary,contentHtml)
+        values(#{news.title},#{news.createDate},#{news.content},#{news.count},#{news.enabled},#{news.newsIcon},#{news.summary},#{news.contentHtml})
+    </insert>
+
 
 </mapper>
     

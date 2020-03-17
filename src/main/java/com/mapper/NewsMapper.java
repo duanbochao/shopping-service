@@ -26,6 +26,5 @@ public interface NewsMapper {
 
    Integer deleteNewsByIds(@Param("ids") String[] ids);
 
-
-
+   Integer insertNewsList(@Param("news") News news);
 }

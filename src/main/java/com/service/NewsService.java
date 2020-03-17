@@ -4,6 +4,7 @@ import com.bean.News;
 import com.mapper.NewsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @date 2020/3/8 17:11
  */
 @Service
+@Transactional
 public class NewsService {
 
     @Autowired
@@ -44,6 +46,12 @@ public class NewsService {
         return newsMapper.updateNews(news);
     }
 
+    //添加新闻资讯
+    public  Integer addNewsList(News news){
+        news.setEnabled(true);
+        news.setSummary("暂无介绍...");
+        return newsMapper.insertNewsList(news);
+    }
 
 
 }

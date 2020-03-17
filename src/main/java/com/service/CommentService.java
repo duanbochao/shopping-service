@@ -5,6 +5,7 @@ import com.mapper.CommentMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2020/3/9 9:39
  */
 @Service
+@Transactional
 public class CommentService {
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.controller.admin.home.news;
 
 import com.bean.News;
+import com.bean.RespBean;
 import com.service.CommentService;
 import com.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,16 @@ public class NewsController {
     @RequestMapping("/updateNews")
     public Integer updateNews(News news){
         return newsService.updateNews(news);
+    }
+
+
+    @RequestMapping("/addNewsList")
+    public RespBean addNewsList(News news){
+        Integer integer = newsService.addNewsList(news);
+        if (integer>0){
+            return RespBean.ok("添加成功!");
+        }
+        return RespBean.error("添加失败!");
     }
 
 }
