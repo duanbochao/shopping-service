@@ -14,8 +14,13 @@ public interface CommentMapper {
 
    List<Comment> getCommentByPage(@Param("page") Integer start,@Param("size") Integer page,@Param("nid") Integer nid,@Param("commetType") String commetType);
 
+
+   Integer getCommentCountByIdAndType(@Param("nid") Integer nid,@Param("commetType") String commetType);
+
    Integer addComment(Comment cmt);
 
    Integer addNewsComment(@Param("nid") Integer nid,@Param("cid")Integer cid,@Param("type")String type);
+
+    List<Comment> getNewsCommentById();
 
 }

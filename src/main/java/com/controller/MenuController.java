@@ -25,7 +25,7 @@ import java.util.UUID;
  * @date 2020/3/15 17:42
  */
 @RestController
-@RequestMapping("/config")
+    @RequestMapping("/config")
 public class MenuController {
 
 
@@ -49,7 +49,7 @@ public class MenuController {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
     @RequestMapping(value = "/uploadimg", method = RequestMethod.POST)
-    public RespBean uploadImg(HttpServletRequest req, MultipartFile image) {
+    public RespBean uploadImg(HttpServletRequest req, MultipartFile file) {
         StringBuffer url = new StringBuffer();
         String filePath = "/shopping-server/" + sdf.format(new Date());
         String imgFolderPath = req.getServletContext().getRealPath(filePath);
@@ -64,12 +64,12 @@ public class MenuController {
                 .append(req.getServerPort())
                 .append(req.getContextPath())
                 .append(filePath);
-        String imgName = UUID.randomUUID() + "_" + image.getOriginalFilename().replaceAll(" ", "");
+        String imgName = UUID.randomUUID() + "_" + file.getOriginalFilename().replaceAll(" ", "");
         try {
-            IOUtils.write(image.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
+            IOUtils.write(file.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
             url.append("/").append(imgName);
 
-            return  RespBean.success(url.toString());
+                return  RespBean.success(url.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

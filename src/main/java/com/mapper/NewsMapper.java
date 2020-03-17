@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.bean.Comment;
 import com.bean.News;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +23,9 @@ public interface NewsMapper {
    Integer getTotal(@Param("keywords") String keywords);
 
    Integer updateNews(News news);
+
+   Integer deleteNewsByIds(@Param("ids") String[] ids);
+
+
+
 }

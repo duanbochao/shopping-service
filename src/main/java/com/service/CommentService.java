@@ -2,6 +2,7 @@ package com.service;
 
 import com.bean.Comment;
 import com.mapper.CommentMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +35,11 @@ public class CommentService {
         if (a+b==2) return 1;
         return 0;
     }
+
+
+    //统计评论数目
+   public Integer getCommentCountByIdAndType(Integer nid,String commetType){
+       return commentMapper.getCommentCountByIdAndType(nid, commetType);
+   }
+
 }

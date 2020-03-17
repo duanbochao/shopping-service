@@ -5,7 +5,6 @@
 <mapper namespace="com.mapper.CommentMapper">
 
     <select id="getCommentByPage" resultType="com.bean.Comment">
-
         select * from comment  where  id in
         <if test="commetType==0 || commetType=='0'">
         (select nc.cid  from news_comment nc where nc.nid=#{nid})  and commetType=#{commetType}
@@ -16,6 +15,19 @@
         </if>
         ORDER BY commentDate  desc  limit #{page},#{size}
     </select>
+
+
+    <select id="getCommentCountByIdAndType" resultType="Integer">
+        select count(*) from comment  where  id in
+        <if test="commetType==0 || commetType=='0'">
+            (select nc.cid  from news_comment nc where nc.nid=#{nid})  and commetType=#{commetType}
+        </if>
+
+        <if test="commetType==1 || commetType=='1'">
+            (select nc.cid  from share_comment nc where nc.sid=#{nid})  and commetType=#{commetType}
+        </if>
+    </select>
+
 
 
     <insert id="addComment" parameterType="com.bean.Comment" keyProperty="id"
@@ -36,6 +48,7 @@
               values (#{nid},#{cid});
           </if>
     </insert>
+
 
 </mapper>
     

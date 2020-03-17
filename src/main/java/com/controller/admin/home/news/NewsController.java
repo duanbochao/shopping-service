@@ -1,6 +1,7 @@
 package com.controller.admin.home.news;
 
 import com.bean.News;
+import com.service.CommentService;
 import com.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class NewsController {
 
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    CommentService commentService;
 
     /**
      * 获取新闻列表
@@ -63,4 +67,5 @@ public class NewsController {
     public Integer updateNews(News news){
         return newsService.updateNews(news);
     }
+
 }

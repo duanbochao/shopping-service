@@ -4,13 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.NewsMapper">
 
+    <resultMap id="BaseResultMap" type="com.bean.News">
+        <id column="id" property="id"></id>
+        <association property="commentCount" javaType="java.lang.Integer" select="com.mapper.NewsMapper.getCommentCount" column="id" ></association>
+    </resultMap>
 
 
     <!--前端查询接口-->
     <select id="getNewsListById" resultType="com.bean.News">
         select  n.id,n.title,n.createDate,n.count,n.newsIcon,n.summary
                <if test="id!=null and id!='' ">
-                   ,n.content
+                   ,n.content,n.contentHtml
                </if>
                from news n
                 <if test="id!=null and id!='' ">
@@ -22,14 +26,21 @@
     </update>
 
 
+
     <!--后台查询接口-->
-    <select id="getNewsListByPage" resultType="com.bean.News">
+    <select id="getNewsListByPage" resultMap="BaseResultMap">
         select * from news
                 <if test="keywords!='' and keywords!=null">
                     where title  like concat("%",#{keywords},"%")
                 </if>
                limit #{start},#{size}
     </select>
+
+    <!--跨表统计次数-->
+    <select id="getCommentCount" parameterType="Integer" resultType="Integer">
+        select count(*) from  comment where id in(select nc.cid from news_comment nc where nc.nid=#{id})
+    </select>
+
 
     <select id="getTotal" resultType="Integer">
         select count(*) from news
@@ -67,9 +78,14 @@
                   content=#{content},
             </if>
 
+              <if test="contentHtml!=null and contentHtml!= ''">
+                  contentHtml=#{contentHtml},
+             </if>
+
         </set>
         where id=#{id}
     </update>
+
 
 </mapper>
     
