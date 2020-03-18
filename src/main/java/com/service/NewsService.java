@@ -1,6 +1,7 @@
 package com.service;
 
 import com.bean.News;
+import com.mapper.CommentMapper;
 import com.mapper.NewsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class NewsService {
     @Autowired
     NewsMapper newsMapper;
 
+    @Autowired
+    CommentMapper commentMapper;
 
     //前端查询接口
     public List<News> getNewsListById(Integer id){
@@ -53,5 +56,15 @@ public class NewsService {
         return newsMapper.insertNewsList(news);
     }
 
+
+    public Integer deleteNewsById(String ids){
+        String[] split = ids.split(",");
+        //1、删除评论表
+        commentMapper.deleteCommentByIds(split);
+        //2、删除资讯评论公共表
+        newsMapper.deleteNewsCommentCommonTableByIds(split);
+        //3、删除资讯表
+        return newsMapper.deleteNewsByIds(split);
+    }
 
 }

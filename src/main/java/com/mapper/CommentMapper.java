@@ -23,4 +23,6 @@ public interface CommentMapper {
 
     List<Comment> getNewsCommentById();
 
+    //删除评论公共表中的内容
+    Integer deleteCommentByIds(@Param("ids") String[] ids);
 }

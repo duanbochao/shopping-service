@@ -79,4 +79,9 @@ public class NewsController {
         return RespBean.error("添加失败!");
     }
 
+
+    @RequestMapping("/deleteNewsById")
+    public Integer deleteNewsById(String ids){
+        return newsService.deleteNewsById(ids);
+    }
 }

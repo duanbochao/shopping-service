@@ -49,7 +49,14 @@
           </if>
     </insert>
 
-
+    <!--删除新闻资讯评论公共表中的内容-->
+    <delete id="deleteCommentByIds">
+        delete  from `comment` where id in(select nc.cid from news_comment nc where nc.nid in
+          <foreach collection="ids" item="id" open="(" close=")" separator=",">
+              #{id}
+          </foreach>
+        )
+    </delete>
 </mapper>
     
     

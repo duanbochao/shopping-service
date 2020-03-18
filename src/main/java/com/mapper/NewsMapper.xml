@@ -93,6 +93,24 @@
     </insert>
 
 
+    <!--删除新闻资讯表-->
+    <delete id="deleteNewsByIds">
+        delete from news where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--删除新闻资讯评论公共表-->
+    <delete id="deleteNewsCommentCommonTableByIds">
+        delete  from news_comment where nid in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+
+
 </mapper>
     
     
