@@ -1,12 +1,15 @@
 package com.controller.admin.home.Share;
 
+import com.bean.RespBean;
 import com.bean.Share;
 import com.bean.CommonDetail;
 import com.service.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,8 +34,14 @@ public class ShareController {
      * @return
      */
     @RequestMapping("/web/getSharePagesByType")
-    List<Share> getSharePagesByType(Integer page, String type){
-        return shareService.getSharePagesByType(page, 5, type);
+
+   public  HashMap<String, Object> getSharePagesByType(Integer page, String type, @RequestParam(defaultValue = "5",value = "size", required = false)Integer size){
+        List<Share> shareList = shareService.getSharePagesByType(page, size, type);
+        Integer total = shareService.getShareCount(type);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("shareList",shareList );
+        map.put("total", total);
+        return map;
     }
 
 
@@ -46,6 +55,22 @@ public class ShareController {
         return shareService.getSharSurlBySid(sid);
     }
 
+
+    //删除详情图片
+    @RequestMapping("/deleteDetailsById")
+    public Integer deleteDetailsById(Integer sid){
+        return shareService.deleteDetailsById(sid);
+    }
+
+    @RequestMapping("/addShareSubImageToDetail")
+    public RespBean addShareSubImageToDetail(CommonDetail cd,Integer sid){
+        cd.setEnabled(true);
+        Integer integer = shareService.addShareSubImageToDetail(cd, sid);
+        if (integer>0){
+            return RespBean.ok(cd);
+        }
+        return  RespBean.error(cd);
+    }
 }
 
 

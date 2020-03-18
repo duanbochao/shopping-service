@@ -28,8 +28,6 @@
         </if>
     </select>
 
-
-
     <insert id="addComment" parameterType="com.bean.Comment" keyProperty="id"
             useGeneratedKeys="true">
         insert into comment(username,commentContent,commetType) values (#{username},#{commentContent},#{commetType})

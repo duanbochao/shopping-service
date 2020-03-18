@@ -84,4 +84,6 @@ public class NewsController {
     public Integer deleteNewsById(String ids){
         return newsService.deleteNewsById(ids);
     }
+
+
 }

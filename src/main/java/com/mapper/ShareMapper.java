@@ -16,4 +16,7 @@ public interface ShareMapper {
 
     void addCount(@Param("id") Integer id);
 
+    //统计总数目
+    Integer getShareCount(@Param("type") String type);
+
 }

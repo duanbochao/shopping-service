@@ -1,8 +1,10 @@
 package com.controller.admin.home;
 
+import com.bean.CommonDetail;
 import com.bean.Menu;
 import com.bean.Rotation;
 import com.service.ImageService;
+import com.service.ShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,9 @@ public class HomeController {
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    ShareService shareService;
+
     /**
      * 获取轮播图
      * @return
@@ -31,7 +36,4 @@ public class HomeController {
     public List<Rotation> getAllRotation(){
         return imageService.getAllRotation();
     }
-
-
-
 }

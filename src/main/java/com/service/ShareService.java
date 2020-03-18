@@ -4,6 +4,7 @@ import com.bean.Share;
 import com.bean.CommonDetail;
 import com.mapper.CommonDetailMapper;
 import com.mapper.ShareMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,8 @@ public class ShareService {
     @Autowired
     CommonDetailMapper commonDetailMapper;
 
+
+
   public  List<Share> getSharePagesByType(Integer page,Integer size,String type){
         Integer start=(page-1)*size;
         return shareMapper.getSharePagesByType(start, size, type);
@@ -37,7 +40,19 @@ public class ShareService {
         return commonDetailMapper.getSharSurlBySid(sid);
     }
 
+    //获取总条目
+    public  Integer getShareCount(String type){
+        return shareMapper.getShareCount(type);
+    }
 
 
+    //删除详情图片的id
+    public Integer deleteDetailsById(Integer id){
+        return commonDetailMapper.deleteDetailsById(id);
+    }
 
+    public Integer addShareSubImageToDetail(CommonDetail cd,Integer sid){
+        commonDetailMapper.addCommonDetail(cd); //添加依赖关系
+        return  commonDetailMapper.addShareDetail(sid,cd.getId());//添加详情表
+    }
 }

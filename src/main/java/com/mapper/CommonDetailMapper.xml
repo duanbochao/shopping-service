@@ -14,6 +14,19 @@
         select * from details where id in(select  gd.did from goods_details gd  where gd.gid=#{gid})
     </select>
 
+    <delete id="deleteDetailsById">
+        delete from details where id=#{id}
+    </delete>
+
+
+    <!--添加图片-->
+    <insert id="addCommonDetail"  useGeneratedKeys="true"  keyProperty="id" keyColumn="id">
+        insert into details(surl,enabled,type) values(#{surl},#{enabled},#{type})
+    </insert>
+
+    <insert id="addShareDetail">
+        insert into share_detail(sid,did) values (#{sid},#{did})
+    </insert>
 </mapper>
     
     

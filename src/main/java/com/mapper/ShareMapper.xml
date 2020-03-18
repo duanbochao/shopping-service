@@ -28,6 +28,15 @@
     <update id="addCount">
         update  share set count =count+1 where id=#{id};
     </update>
+
+    <select id="getShareCount" resultType="Integer">
+        SELECT count(*) from share
+        <where>
+            <if test="type!=0">
+                and  type=#{type}
+            </if>
+        </where>
+    </select>
 </mapper>
     
     
