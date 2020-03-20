@@ -51,9 +51,8 @@ public class MenuController {
     @RequestMapping(value = "/uploadimg", method = RequestMethod.POST)
     public RespBean uploadImg(HttpServletRequest req, MultipartFile file) {
         StringBuffer url = new StringBuffer();
-        String filePath = "/shopping-server/" + sdf.format(new Date());
-        String imgFolderPath = req.getServletContext().getRealPath(filePath);
-        File imgFolder = new File(imgFolderPath);
+        String filePath = "D:\\nginx-1.14.2\\resources\\" + sdf.format(new Date());
+        File imgFolder = new File(filePath);
         if (!imgFolder.exists()) {
             imgFolder.mkdirs();
         }
@@ -61,9 +60,8 @@ public class MenuController {
                 .append("://")
                 .append(req.getServerName())
                 .append(":")
-                .append(req.getServerPort())
-                .append(req.getContextPath())
-                .append(filePath);
+                .append("80")
+                .append("/"+sdf.format(new Date()));
         String imgName = UUID.randomUUID() + "_" + file.getOriginalFilename().replaceAll(" ", "");
         try {
             IOUtils.write(file.getBytes(), new FileOutputStream(new File(imgFolder, imgName)));
