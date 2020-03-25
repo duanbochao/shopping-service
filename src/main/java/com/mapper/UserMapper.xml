@@ -12,22 +12,57 @@
         <result column="password" property="password"></result>
         <result column="userface" property="userface"></result>
         <result column="enabled" property="enabled"></result>
+    </resultMap>
 
+    <resultMap id="extenBaseResultMap" type="com.bean.User" extends="BaseResultMap">
         <collection property="roles" ofType="com.bean.Role" column="id" select="com.mapper.UserMapper.loadRolesByUid">
             <id column="id" property="id"></id>
             <result column="name" property="name"></result>
             <result column="nameZh" property="nameZh"></result>
         </collection>
-
     </resultMap>
 
-    <select id="loadUserByUsername" resultMap="BaseResultMap">
+
+    <resultMap id="getAllUserResultMap" type="com.bean.User" extends="BaseResultMap">
+        <collection property="roles" ofType="com.bean.Role" column="id" >
+            <id column="rid" property="id"></id>
+            <result column="rname" property="name"></result>
+            <result column="rnameZh" property="nameZh"></result>
+        </collection>
+    </resultMap>
+
+    <select id="loadUserByUsername" resultMap="extenBaseResultMap">
         select  * from user where username=#{u}
     </select>
 
     <select id="loadRolesByUid" resultType="com.bean.Role">
         select * from role where id in(select ur.rid from user_role ur where ur.uid=#{id} )
     </select>
+
+
+    <select id="getAllUser" resultMap="getAllUserResultMap">
+        select u.*,r.id as rid,r.name as rname,r.nameZh as rnameZh from user u
+                                                                            LEFT JOIN user_role ur on ur.uid=u.id
+                                                                            LEFT JOIN role r on ur.rid=r.id
+        where u.id not in(select ur.uid from user_role ur,role r where ur.rid=r.id and r.nameZh="超级管理员")
+
+    <if test="keywords!='all'">
+        and u.`name` like concat('%',#{keywords},'%')
+    </if>
+
+    </select>
+
+
+    <update id="updateUser" parameterType="com.bean.User">
+        update  user
+        set enabled=#{enabled}
+          where  id=#{id}
+    </update>
+
+
+    <delete id="deleteUserById">
+        delete * from user where id=#{id}
+    </delete>
 
 </mapper>
     

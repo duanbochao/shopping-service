@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RoleMapper">
+
+    <select id="getAllRoles" resultType="com.bean.Role">
+        select * from role r where r.nameZh!="超级管理员" ;
+    </select>
+
+    <!--根据uid删除对应关系-->
+    <delete id="deleteRolesById">
+        delete from user_role where uid=#{uid}
+    </delete>
+
+    <!--根据uid添加对应关系-->
+    <insert id="addRolesByIds">
+       insert into user_role(uid,rid)  values
+    <foreach collection="rids"  separator="," item="rid">
+        (#{uid},#{rid})
+    </foreach>
+    </insert>
+
+
+</mapper>
+    
+    
+    
+    

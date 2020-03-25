@@ -1,6 +1,10 @@
 package com.mapper;
 
+import com.bean.Role;
 import com.bean.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author duanbochao
@@ -10,4 +14,11 @@ import com.bean.User;
 public interface UserMapper {
 
     User loadUserByUsername(String s);
+
+    List<User> getAllUser(@Param("keywords") String keywords);
+
+    Integer updateUser(User user);
+
+    Integer deleteUserById(Integer id);
+
 }
