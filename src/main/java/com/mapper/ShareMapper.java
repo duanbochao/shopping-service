@@ -19,4 +19,9 @@ public interface ShareMapper {
     //统计总数目
     Integer getShareCount(@Param("type") String type);
 
+    Integer addShare(Share share);
+
+    Integer deleteShareByIds(@Param("ids") String[] ids);
+
+    Integer updateShare(Share share);
 }

@@ -17,4 +17,9 @@ public interface RoleMapper {
 
     Integer addRolesByIds(@Param("rids")String[] rids,@Param("uid") Integer uid);
 
+    Integer deleteMenuRoleByRid(@Param("rid") Integer rid);
+
+    Integer addMenuRoles(@Param("mids") String[] mids,@Param("rid") Integer rid);
+
+    Integer addRole(Role role);
 }

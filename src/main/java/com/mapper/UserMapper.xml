@@ -49,7 +49,7 @@
     <if test="keywords!='all'">
         and u.`name` like concat('%',#{keywords},'%')
     </if>
-
+      limit 0,5
     </select>
 
 

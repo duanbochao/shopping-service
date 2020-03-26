@@ -28,6 +28,23 @@
         </collection>
 
 
+        <collection property="children" ofType="com.bean.Menu">
+            <id column="id2" property="id"></id>
+            <result column="name2" property="name"></result>
+            <result column="ur2" property="url"></result>
+            <result column="path2" property="path"></result>
+
+            <!--配置一对一-->
+            <association property="meta" javaType="com.bean.MenuMeta">
+                <result column="requireAuth2" property="requireAuth"></result>
+            </association>
+
+            <collection property="children" ofType="com.bean.Menu">
+                <id column="id3" property="id"/>
+                <result column="name3" property="name" jdbcType="VARCHAR"/>
+            </collection>
+
+        </collection>
 
     </resultMap>
 
@@ -39,21 +56,9 @@
     </select>
 
 
-    <resultMap id="extenResultMap" type="com.bean.Menu" extends="BaseResultMap">
-        <collection property="children" ofType="com.bean.Menu">
-            <result column="name2" property="name"></result>
-            <result column="ur2" property="url"></result>
-            <result column="path2" property="path"></result>
 
-            <!--配置一对一-->
-            <association property="meta" javaType="com.bean.MenuMeta">
-                <result column="requireAuth2" property="requireAuth"></result>
-            </association>
 
-        </collection>
-    </resultMap>
-
-    <select id="getMenusById" resultMap="extenResultMap">
+    <select id="getMenusById" resultMap="BaseResultMap">
         select m1.*,m2.name as name2,m2.url as url2,m2.path as path2,m2.requireAuth as requireAuth2
         from menu m1,menu m2
         where m1.id=m2.parentId and m2.id in(
@@ -62,6 +67,19 @@
     </select>
 
 
+
+    <select id="getMenuTree" resultMap="BaseResultMap">
+        select m1.id,m1.url,m1.name,m2.id as id2,m2.url as url2,m2.name as name2
+                ,m3.id as id3,m3.url as url3,m3.name as name3
+        from menu m1,menu m2,menu m3
+        where m1.id=m2.parentId
+          and m2.id=m3.parentId
+    </select>
+
+
+    <select id="getMenuByRid" resultType="Integer">
+        select mr.mid from menu_role mr where mr.rid=#{rid}
+    </select>
 
 </mapper>
     

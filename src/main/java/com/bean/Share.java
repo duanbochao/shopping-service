@@ -18,13 +18,14 @@ public class Share {
     private String url;
     private Integer count;
 
-    private Timestamp createDate;
+    private String createDate;
 
-    public Timestamp getCreateDate() {
+
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

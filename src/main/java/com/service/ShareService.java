@@ -55,4 +55,19 @@ public class ShareService {
         commonDetailMapper.addCommonDetail(cd); //添加依赖关系
         return  commonDetailMapper.addShareDetail(sid,cd.getId());//添加详情表
     }
+
+
+    public Integer addShare(Share share){
+          share.setEnabled(true);
+        return shareMapper.addShare(share);
+    }
+
+    public Integer deleteShareByIds(String ids){
+        String[] split = ids.split(",");
+        return shareMapper.deleteShareByIds(split);
+    }
+
+    public Integer updateShare(Share share){
+        return shareMapper.updateShare(share);
+    }
 }

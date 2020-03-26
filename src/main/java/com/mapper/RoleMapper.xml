@@ -22,6 +22,22 @@
     </insert>
 
 
+    <delete id="deleteMenuRoleByRid">
+        delete from menu_role where rid=#{rid}
+    </delete>
+
+
+    <insert id="addMenuRoles">
+        insert into menu_role(rid,mid)
+        values
+      <foreach collection="mids"  separator="," item="mid">
+          (#{rid},#{mid})
+      </foreach>
+    </insert>
+
+    <insert id="addRole">
+        insert into role(name,nameZh) values(#{name},#{nameZh})
+    </insert>
 </mapper>
     
     

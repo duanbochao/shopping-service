@@ -17,4 +17,7 @@ public interface MenuMapper {
 
     List<Menu> getMenusById(@Param("id") Integer id);
 
+    List<Menu> getMenuTree();
+
+    List<Integer> getMenuByRid(@Param("rid") Integer rid);
 }

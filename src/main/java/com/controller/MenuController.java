@@ -2,9 +2,12 @@ package com.controller;
 
 import com.bean.Menu;
 import com.bean.RespBean;
+import com.bean.Role;
 import com.service.MenuService;
+import com.service.RoleService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +35,9 @@ public class MenuController {
 
     @Autowired
     MenuService menuService;
+
+    @Autowired
+    RoleService roleService;
 
     @RequestMapping("/getMenusById")
     public List<Menu> getMenuById(){
@@ -75,5 +82,30 @@ public class MenuController {
     }
 
 
+
+
+    @RequestMapping("/getMenuTree/{rid}")
+    public HashMap<String, Object> getMenuTree(@PathVariable Integer rid){
+        List<Menu> menuTree = menuService.getMenuTree();
+        List<Integer> mids = menuService.getMenuByRid(rid);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("menuTree",menuTree);
+        map.put("mids", mids);
+        return map;
+    }
+
+    @RequestMapping("/updateMenuRoles")
+    public RespBean updateMenuRoles(String mids,Integer rid){
+        Integer i = roleService.updateMenuRoles(mids, rid);
+        if (i>0){
+            return RespBean.success("更新成功!");
+        }
+        return RespBean.error("更新失败!");
+    }
+
+    @RequestMapping("/addRole")
+    public Integer addRole(Role role){
+        return roleService.addRole(role);
+    }
 
 }

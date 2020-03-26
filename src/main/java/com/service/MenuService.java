@@ -29,4 +29,12 @@ public class MenuService {
         return menuMapper.getMenusById(UserUtils.getCurrentUser().getId());
     }
 
+
+    public List<Menu> getMenuTree(){
+        return menuMapper.getMenuTree();
+    }
+
+    public  List<Integer> getMenuByRid(Integer rid){
+        return menuMapper.getMenuByRid(rid);
+    }
 }

@@ -71,6 +71,31 @@ public class ShareController {
         }
         return  RespBean.error(cd);
     }
+
+    @RequestMapping("/deleteShareByIds")
+    public Integer deleteShareByIds(String ids){
+        return shareService.deleteShareByIds(ids);
+    }
+
+    @RequestMapping("/addShare")
+    public RespBean addShare(Share share ){
+        Integer i = shareService.addShare(share);
+        if (i>0){
+            return RespBean.success("添加成功!");
+        }
+        return RespBean.error("添加失败!");
+    }
+
+
+    @RequestMapping("/updateShare")
+    public RespBean updateShare(Share share){
+        Integer integer = shareService.updateShare(share);
+        if (integer>0){
+            return RespBean.success("更新成功!");
+        }
+        return RespBean.error("更新失败!");
+
+    }
 }
 
 

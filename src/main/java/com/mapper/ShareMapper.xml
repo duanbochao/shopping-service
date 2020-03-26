@@ -37,6 +37,50 @@
             </if>
         </where>
     </select>
+
+
+    <insert id="addShare">
+        insert into share(url,title,content,createDate,type,enabled,count) values (#{url},#{title},#{content},#{createDate},#{type},#{enabled},#{count})
+    </insert>
+
+
+    <delete id="deleteShareByIds">
+        delete from share where id in
+        <foreach collection="ids" item="id" close=")" open="(" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <update id="updateShare" parameterType="com.bean.Share">
+        update share
+    <set>
+        <if test="url!=null and url!=''">
+          url=#{url},
+        </if>
+
+        <if test="title!=null and title!=''">
+            title=#{title},
+        </if>
+
+        <if test="content!=null and content!=''">
+            content=#{content},
+        </if>
+
+        <if test="createDate!=null and createDate!=''">
+            createDate=#{createDate},
+        </if>
+
+        <if test="type!=null and type!=''">
+            type=#{type},
+        </if>
+
+        <if test="count!=null and count!=''">
+            count=#{count},
+        </if>
+    </set>
+        where id=#{id}
+    </update>
 </mapper>
     
     
