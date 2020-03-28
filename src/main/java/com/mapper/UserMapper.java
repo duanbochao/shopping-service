@@ -21,4 +21,6 @@ public interface UserMapper {
 
     Integer deleteUserById(Integer id);
 
+    Integer addUser(User user);
+
 }

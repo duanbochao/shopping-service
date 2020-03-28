@@ -61,4 +61,8 @@ public class UserService implements UserDetailsService {
     public Integer deleteUserById(Integer id){
         return userMapper.deleteUserById(id);
     }
+
+    public Integer addUser(User user){
+        return userMapper.addUser(user);
+    }
 }

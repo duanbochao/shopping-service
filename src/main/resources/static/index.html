@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket广播</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="sockjs.min.js"></script>
+    <script src="stomp.js"></script>
+</head>
+<body>
+
+<button type="button" onclick="connent()">连接</button>
+<input type="text" id="name"/>
+<button type="button" onclick="sendMsg()">发送</button>
+<script>
+
+    var stompClient=null;
+
+    //连接socket
+    function connent() {
+        var socket = new SockJS("/endpointSang");
+        stompClient= Stomp.over(socket);
+        stompClient.connect({},function (frame) {
+            stompClient.subscribe("/topic/getResponse",function (response) {
+                console.log(response)
+            })
+        })
+    }
+
+    //断开连接
+    function disConnent() {
+        if (stompClient!=null) {
+            stompClient.disconnect();
+        }
+    }
+
+    //发送数据
+    function  sendMsg() {
+        var name = $("#name").val();
+        stompClient.send("/welcome",{},JSON.stringify({"name":name}));
+    }
+
+
+</script>
+
+</body>
+</html>

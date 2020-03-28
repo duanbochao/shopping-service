@@ -61,8 +61,13 @@
 
 
     <delete id="deleteUserById">
-        delete * from user where id=#{id}
+        delete  from user where id=#{id}
     </delete>
+
+
+    <insert id="addUser">
+        insert into user(username,password,userface,enabled,name) values (#{username},#{password},#{userface},#{enabled},#{name})
+    </insert>
 
 </mapper>
     

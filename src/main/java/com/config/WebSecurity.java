@@ -69,7 +69,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .and()
-                .formLogin().loginPage("/login_p").loginProcessingUrl("/login")
+                .formLogin().loginPage("/login_p").loginProcessingUrl("/home/login")
                 .usernameParameter("username").passwordParameter("password")
                 .successHandler(new AuthenticationSuccessHandler() {
                     @Override
